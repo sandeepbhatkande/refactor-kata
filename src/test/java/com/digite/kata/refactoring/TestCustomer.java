@@ -15,8 +15,7 @@ public class TestCustomer {
 
     @Test
     public void testRegularMovieStatement () {
-        BillGenerator billGenerator = new RegularMovie();
-        Rental rental = new Rental(new Movie("Movie1", 0), 6, billGenerator);
+        Rental rental = new Rental(new Movie("Movie1", 0), 6);
         customer.addRental(rental);
         assertEquals("Total rental", "Rental Record for Sandeep\n" +
                 "\tMovie1\t8.0\n" +
@@ -26,8 +25,7 @@ public class TestCustomer {
 
     @Test
     public void testNewReleaseMovieStatement () {
-        BillGenerator billGenerator = new NewReleaseMovie();
-        Rental rental = new Rental(new Movie("Movie2", 1), 8, billGenerator);
+        Rental rental = new Rental(new Movie("Movie2", 1), 8);
         customer.addRental(rental);
         assertEquals("Rental Record for Sandeep\n" +
                 "\tMovie2\t24.0\n" +
@@ -37,8 +35,7 @@ public class TestCustomer {
 
     @Test
     public void testChildrenMovieStatement () {
-        BillGenerator billGenerator = new ChildrenMovie();
-        Rental rental = new Rental(new Movie("Movie3", 2), 10, billGenerator);
+        Rental rental = new Rental(new Movie("Movie3", 2), 10);
         customer.addRental(rental);
 
         assertEquals("Rental Record for Sandeep\n" +
@@ -49,11 +46,9 @@ public class TestCustomer {
 
    @Test
     public void testRegularAndChildrenMovieStatement () {
-       BillGenerator billGenerator1 = new RegularMovie();
-        Rental rental = new Rental(new Movie("Movie1", 0), 6, billGenerator1);
+        Rental rental = new Rental(new Movie("Movie1", 0), 6);
         customer.addRental(rental);
-       BillGenerator billGenerator = new ChildrenMovie();
-        Rental rental1 = new Rental(new Movie("Movie4", 2), 6, billGenerator);
+        Rental rental1 = new Rental(new Movie("Movie4", 2), 6);
         customer.addRental(rental1);
 
         assertEquals("Rental Record for Sandeep\n" +
