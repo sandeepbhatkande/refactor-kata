@@ -42,4 +42,17 @@ public class TestCustomer {
                 "Amount owed is 12.0\n" +
                 "You earned 1 frequent renter points", customer.statement());
     }
+
+    @Test
+    public void testRegularAndChildrenMovieStatement () {
+        Rental rental = new Rental(new Movie("Movie1", 0), 6);
+        customer.addRental(rental);
+        Rental rental1 = new Rental(new Movie("Movie4", 2), 6);
+        customer.addRental(rental1);
+        assertEquals("Rental Record for Sandeep\n" +
+                "\tMovie1\t8.0\n" +
+                "\tMovie4\t6.0\n" +
+                "Amount owed is 14.0\n" +
+                "You earned 2 frequent renter points", customer.statement());
+    }
 }
