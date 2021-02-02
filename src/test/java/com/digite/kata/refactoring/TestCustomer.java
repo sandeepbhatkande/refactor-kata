@@ -15,7 +15,8 @@ public class TestCustomer {
 
     @Test
     public void testRegularMovieStatement () {
-        Rental rental = new Rental(new Movie("Movie1", 0), 6);
+        BillGenerator billGenerator = new RegularMovie();
+        Rental rental = new Rental(new Movie("Movie1", 0), 6, billGenerator);
         customer.addRental(rental);
         assertEquals("Total rental", "Rental Record for Sandeep\n" +
                 "\tMovie1\t8.0\n" +
@@ -25,7 +26,8 @@ public class TestCustomer {
 
     @Test
     public void testNewReleaseMovieStatement () {
-        Rental rental = new Rental(new Movie("Movie2", 1), 8);
+        BillGenerator billGenerator = new NewReleaseMovie();
+        Rental rental = new Rental(new Movie("Movie2", 1), 8, billGenerator);
         customer.addRental(rental);
         assertEquals("Rental Record for Sandeep\n" +
                 "\tMovie2\t24.0\n" +
@@ -35,20 +37,25 @@ public class TestCustomer {
 
     @Test
     public void testChildrenMovieStatement () {
-        Rental rental = new Rental(new Movie("Movie3", 2), 10);
+        BillGenerator billGenerator = new ChildrenMovie();
+        Rental rental = new Rental(new Movie("Movie3", 2), 10, billGenerator);
         customer.addRental(rental);
+
         assertEquals("Rental Record for Sandeep\n" +
                 "\tMovie3\t12.0\n" +
                 "Amount owed is 12.0\n" +
                 "You earned 1 frequent renter points", customer.statement());
     }
 
-    @Test
+   @Test
     public void testRegularAndChildrenMovieStatement () {
-        Rental rental = new Rental(new Movie("Movie1", 0), 6);
+       BillGenerator billGenerator1 = new RegularMovie();
+        Rental rental = new Rental(new Movie("Movie1", 0), 6, billGenerator1);
         customer.addRental(rental);
-        Rental rental1 = new Rental(new Movie("Movie4", 2), 6);
+       BillGenerator billGenerator = new ChildrenMovie();
+        Rental rental1 = new Rental(new Movie("Movie4", 2), 6, billGenerator);
         customer.addRental(rental1);
+
         assertEquals("Rental Record for Sandeep\n" +
                 "\tMovie1\t8.0\n" +
                 "\tMovie4\t6.0\n" +
