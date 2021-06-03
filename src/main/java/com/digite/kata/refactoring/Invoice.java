@@ -14,9 +14,10 @@ public class Invoice
         while (rentals.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            thisAmount += calculateAmnt(thisAmount, each.getMovie().getPriceCode(),each.getDaysRented());
+
+            thisAmount += calculateAmnt(thisAmount, each);
               // add frequent renter points
-            frequentRenterPoints += calculateFrqRenter(frequentRenterPoints,each.getMovie().getPriceCode(), each.getDaysRented());
+            frequentRenterPoints += calculateFrqRenter(frequentRenterPoints,each);
 
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" +
@@ -32,36 +33,15 @@ public class Invoice
         return result;
     }
 
-    public static double calculateAmnt(double a_amount, int a_priceCode, int a_daysRented)
+
+
+    public static double calculateAmnt(double thisAmount, Rental each)
     {
-        double w_amt = a_amount;
-        switch (a_priceCode) {
-            case Movie.REGULAR:
-                w_amt += 2;
-                if (a_daysRented > 2)
-                    w_amt += (a_daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                w_amt += a_daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                w_amt += 1.5;
-                if (a_daysRented > 3)
-                    w_amt += (a_daysRented - 3) * 1.5;
-                break;
-        }
-        return w_amt;
+        return each.getMovie().calculateAmt(each.getDaysRented());
     }
 
-    public static double calculateFrqRenter(int a_freq, int a_priceCode, int a_daysRented)
+    public static double calculateFrqRenter(int a_freq,  Rental each)
     {
-        int w_totalpoints = a_freq;
-        // add frequent renter points
-        w_totalpoints++;
-        // add bonus for a two day new release rental
-        if ((a_priceCode == Movie.NEW_RELEASE) && a_daysRented > 1)
-            w_totalpoints++;
-
-        return w_totalpoints;
+        return each.getMovie().AddBonusPoint(a_freq, each.getDaysRented());
     }
 }

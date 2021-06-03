@@ -1,27 +1,26 @@
 package com.digite.kata.refactoring;
 
-public class Movie {
-    public static final int CHILDRENS = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
+public class Movie implements PriceCalculater{
     private String _title;
     private int _priceCode;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title) {
         _title = title;
-        _priceCode = priceCode;
     }
 
     public String getTitle() {
         return _title;
     }
 
-    public int getPriceCode() {
-        return _priceCode;
+    public double calculateAmt(int daysRented)
+    {
+        return daysRented;
     }
 
-    public void setPriceCode(int priceCode) {
-        _priceCode = priceCode;
+    public int AddBonusPoint(int a_existingBonus, int daysRented)
+    {
+        a_existingBonus++;
+        return a_existingBonus;
     }
 
 }
