@@ -2,7 +2,7 @@ package com.digite.kata.refactoring;
 
 public class Rental {
 
-    private Movie _movie;
+    private com.digite.kata.refactoring.Movie _movie;
     private int _daysRented;
 
     public Rental(Movie movie, int daysRented) {

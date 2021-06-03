@@ -23,4 +23,9 @@ public class Movie {
     public void setPriceCode(int priceCode) {
         _priceCode = priceCode;
     }
+
+    public double generateInvoice(Rental each) {
+        double w_amount = each.getMovie().generateInvoice(each);
+        return w_amount;
+    }
 }
