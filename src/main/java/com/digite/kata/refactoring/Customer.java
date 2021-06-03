@@ -3,7 +3,7 @@ package com.digite.kata.refactoring;
 import java.util.Enumeration;
 import java.util.Vector;
 
-class Customer {
+public class Customer {
     private String _name;
     private Vector<Rental> _rentals = new Vector();
 
@@ -25,6 +25,6 @@ class Customer {
 
     public String statement() {
         Invoice w_invoice = new Invoice();
-        return w_invoice.generateInvoice(_name, _rentals);
+        return Invoice.generateInvoice(_name, _rentals);
     }
 }
