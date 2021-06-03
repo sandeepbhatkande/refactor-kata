@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class TestCustomer {
 
     @Test
-    public  void testStatementForChildMovie()
+    public  void testStatementForChildMovieWithWrongPriceCode()
     {
         Customer w_customer = new Customer("shraddha");
         Rental w_rental1 = new Rental(new Movie("Dumbo", 10), 7);
