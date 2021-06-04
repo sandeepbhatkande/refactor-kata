@@ -1,16 +1,18 @@
 package com.digite.kata.refactoring;
 
-public class NewReleaseMovie implements InvoiceInt {
+public class NewReleaseMovie extends Movie {
 
-    @Override
-    public double generateInvoice (Rental each) {
-        double thisAmount = 0;
-        thisAmount += each.getDaysRented() * 3;
-        return thisAmount;
+    public NewReleaseMovie(String title) {
+        super(title);
     }
 
-    @Override
-    public int getPriceCode() {
-        return Movie.NEW_RELEASE;
+    public double calculateAmt(int daysRented) {
+        return  daysRented * 3;
+    }
+
+    public int calculateFrequentRenterPoints(int daysRented) {
+        int frequentRenterPoints = 1;
+        if (daysRented > 1) frequentRenterPoints++;
+        return frequentRenterPoints;
     }
 }
