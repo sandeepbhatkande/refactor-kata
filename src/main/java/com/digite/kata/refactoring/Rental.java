@@ -2,16 +2,16 @@ package com.digite.kata.refactoring;
 
 public class Rental {
 
-    private Movie _movie;
+    private MovieCalculator _movieCalculator;
     private int _daysRented;
 
-    public Rental(Movie movie, int daysRented) {
-        _movie = movie;
-        _daysRented = daysRented;
+    public Rental(MovieCalculator a_movieCalculator, int a_daysRented) {
+    	_movieCalculator = a_movieCalculator;
+        _daysRented = a_daysRented;
     }
 
-    public Movie getMovie() {
-        return _movie;
+    public MovieCalculator getMovieCalculator() {
+        return _movieCalculator;
     }
 
     public int getDaysRented() {
